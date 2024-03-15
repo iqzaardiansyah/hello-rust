@@ -11,5 +11,9 @@ There is also a variable called `http_request` to collect the request lines that
 # Commit 2 Screen Capture
 ![Commit 2 screen capture](/assets/images/commit2ss.png)
 
+# Commit 3 Reflection Notes
+![Commit 3 screen capture](/assets/images/commit3ss.png)
+I separate the responses using if-else which reads the request_line. If the read request_line is "GET / HTTP/1.1" then the code will respond back with the correct template and vice versa if the read request_line is wrong.
 
+Refactoring is really needed because it has many benefits, including code that is easier to read and if the code is easy to read then the code will be easier to modify and if the code is easy to modify then the code will have high maintainability.
 </details>
