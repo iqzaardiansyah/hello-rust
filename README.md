@@ -19,4 +19,7 @@ Refactoring is really needed because it has many benefits, including code that i
 
 # Commit 4 Reflection Notes
 when entering /URI, the application will respond quickly. But when the /sleep URI is entered and then the / URI is entered in a separate browser window, the application will wait until the /sleep loading process is complete and then start processing /. In other words, the user accessing / must wait for the loading of other users accessing /sleep.
+
+# Commit 5 Reflection Notes
+A thread pool is a group of threads that appear and are waiting and ready to handle a task. When the program receives a new task, it will assign one of the threads in the pool to that task, and that thread will process the task. The remaining threads in the pool are available to handle other incoming tasks while the first thread is processing. When the first thread finishes processing its task, it returns to the pool of idle threads, ready to handle new tasks. Thread pools allow servers to process connections simultaneously, thereby increasing server throughput.
 </details>
