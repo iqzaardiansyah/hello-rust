@@ -15,17 +15,15 @@ impl ThreadPool {
         assert!(size > 0);
 
         let (sender, receiver) = mpsc::channel();
-
         let receiver = Arc::new(Mutex::new(receiver));
 
-        let mut workers = Vec::with_capacity(size);
-
-        for id in 0..size {
-            workers.push(Worker::new(id, Arc::clone(&receiver)));
-        }
+        let workers = (0..size)
+            .map(|id| Worker::new(id, Arc::clone(&receiver)))
+            .collect();
 
         ThreadPool { workers, sender }
     }
+
 
     pub fn execute<F>(&self, f: F)
     where
@@ -33,7 +31,9 @@ impl ThreadPool {
     {
         let job = Box::new(f);
 
-        self.sender.send(job).unwrap();
+        if let Err(err) = self.sender.send(job) {
+            eprintln!("Error sending job to thread pool: {:?}", err);
+        }
     }
 }
 
