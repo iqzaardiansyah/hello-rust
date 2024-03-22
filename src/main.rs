@@ -9,7 +9,12 @@ use hello::ThreadPool;
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
-    let pool = ThreadPool::new(4);
+    let tpool_size = 4;
+
+    let pool = match ThreadPool::build(tpool_size) {
+        Ok(pool) => pool,
+        Err(error) => panic!("{error}"),
+    };
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
